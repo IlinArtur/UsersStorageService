@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using System;
 using System.Collections.Generic;
+using UserStorageService.Host.Services;
 
 namespace UserStorageService.Host
 {

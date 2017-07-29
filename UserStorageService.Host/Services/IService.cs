@@ -1,4 +1,4 @@
-﻿namespace UserStorageService.Host
+﻿namespace UserStorageService.Host.Services
 {
     public interface IService
     {

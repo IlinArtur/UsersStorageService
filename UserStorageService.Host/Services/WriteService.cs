@@ -6,7 +6,7 @@ using System;
 using System.Web.Http;
 using UserStorageService.Host.Filters;
 
-namespace UserStorageService.Host
+namespace UserStorageService.Host.Services
 {
     public class WriteService : IService, IDisposable
     {

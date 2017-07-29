@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using UserStorageService.Host;
+using UserStorageService.Host.Services;
 using UserStorageService.Read;
 
 namespace UserStoreageService.Host.IntegrationTests

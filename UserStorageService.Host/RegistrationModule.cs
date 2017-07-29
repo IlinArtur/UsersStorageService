@@ -4,6 +4,7 @@ using System.Configuration;
 using UserStorageService.Read;
 using WebApiCondoleTest.Controllers;
 using System;
+using UserStorageService.Host.Services;
 
 namespace UserStorageService.Host
 {

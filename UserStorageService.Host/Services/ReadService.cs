@@ -4,7 +4,7 @@ using System;
 using System.ServiceModel;
 using UserStorageService.Read;
 
-namespace UserStorageService.Host
+namespace UserStorageService.Host.Services
 {
     public class ReadService : IService, IDisposable
     {
