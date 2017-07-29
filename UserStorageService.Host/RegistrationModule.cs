@@ -19,7 +19,7 @@ namespace UserStorageService.Host
             builder.Register(_ => ConfigurationManager.AppSettings[WriteHostAddress]).Named<string>(WriteHostAddress);
             builder.Register(_ => ConfigurationManager.AppSettings[ReadHostAddress]).Named<string>(ReadHostAddress);
             builder.Register(_ => ConfigurationManager.AppSettings[LiteDbConnectionString]).Named<string>(LiteDbConnectionString);
-            builder.Register(ctx => new LiteDbUserInfoDao(ctx.ResolveNamed<string>(LiteDbConnectionString))).AsSelf()
+            builder.Register(ctx => new LiteDbRepository(ctx.ResolveNamed<string>(LiteDbConnectionString))).AsSelf()
                 .AsImplementedInterfaces().SingleInstance();
             builder.RegisterApiControllers(typeof(ProfilesController).Assembly);
             builder.RegisterType<UserInfoProvider>().AsImplementedInterfaces();

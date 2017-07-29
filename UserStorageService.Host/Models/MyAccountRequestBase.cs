@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UserStorageService.Host
+namespace UserStorageService.Host.Models
 {
     public abstract class MyAccountRequestBase
     {

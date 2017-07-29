@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using UserStorageService.Host;
+using UserStorageService.Host.Models;
 
-namespace UserStoreageService.Host
+namespace UserStoreageService.Host.Models
 {
     public class SyncProfileRequest : MyAccountRequestBase
     {

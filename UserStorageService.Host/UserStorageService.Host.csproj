@@ -90,13 +90,13 @@
     <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Filters\ValidateModelFilter.cs" />
     <Compile Include="Services\IService.cs" />
-    <Compile Include="LiteDbUserInfoDao.cs" />
+    <Compile Include="LiteDbRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ReadService.cs" />
     <Compile Include="RegistrationModule.cs" />
-    <Compile Include="SyncProfileRequest.cs" />
-    <Compile Include="MyAccountRequestBase.cs" />
+    <Compile Include="Models\SyncProfileRequest.cs" />
+    <Compile Include="Models\MyAccountRequestBase.cs" />
     <Compile Include="Services\WriteService.cs" />
   </ItemGroup>
   <ItemGroup>

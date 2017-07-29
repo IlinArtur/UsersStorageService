@@ -2,15 +2,16 @@
 using System;
 using UserStorageService.Read;
 using UserStoreageService.Host;
+using UserStoreageService.Host.Models;
 
 namespace UserStorageService.Host
 {
-    public class LiteDbUserInfoDao : IUserInfoDao
+    public class LiteDbRepository : IUserInfoDao
     {
         private readonly string connectionString;
         private readonly string profilesCollection = "profiles";
 
-        public LiteDbUserInfoDao(string connectionString)
+        public LiteDbRepository(string connectionString)
         {
             this.connectionString = connectionString;
             var mapper = BsonMapper.Global;

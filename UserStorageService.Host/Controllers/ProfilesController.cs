@@ -1,14 +1,15 @@
 ﻿using System.Web.Http;
 using UserStorageService.Host;
 using UserStoreageService.Host;
+using UserStoreageService.Host.Models;
 
 namespace WebApiCondoleTest.Controllers
 {
     public class ProfilesController : ApiController
     {
-        private LiteDbUserInfoDao repository;
+        private LiteDbRepository repository;
 
-        public ProfilesController(LiteDbUserInfoDao repository)
+        public ProfilesController(LiteDbRepository repository)
         {
             this.repository = repository;
         }

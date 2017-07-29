@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UserStorageService.Host;
 using UserStorageService.Host.Services;
 using UserStorageService.Read;
+using UserStoreageService.Host.Models;
 
 namespace UserStoreageService.Host.IntegrationTests
 {
