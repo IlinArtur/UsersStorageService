@@ -7,7 +7,7 @@ namespace UserStorageService.Read
     public interface IUserInfoProvider
     {
         [OperationContract]
-        //[FaultContract(typeof(UserNotFound))]
+        [FaultContract(typeof(UserNotFound))]
         UserInfo GetUserInfo(Guid id);
     }
 }

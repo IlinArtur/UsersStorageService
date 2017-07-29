@@ -9,6 +9,7 @@ using UserStorageService.Read;
 namespace UserStoreageService.Host.IntegrationTests
 {
     [TestFixture]
+    [Category("Slow")]
     public class UserStorageServiceReadTests
     {
         private ChannelFactory<IUserInfoProvider> channelFactory;
@@ -59,6 +60,16 @@ namespace UserStoreageService.Host.IntegrationTests
             var client = new HttpClient();
             var request = new SyncProfileRequest { UserId = userId, CountryIsoCode = countryIsoCode, Locale = locale };
             return client.PostAsJsonAsync("http://localhost:51488/import.json", request);
+        }
+
+        [Test]
+        public async Task ReadService_InvalidUserId_ShouldReturnFaultException()
+        {
+            await SendJson(userId_DeadBeef);
+
+            Action gettingUserInfo  = () => GetUserInfo(Guid.Empty);
+
+            gettingUserInfo.ShouldThrow<FaultException<UserNotFound>>().Which.Detail.Id.Should().Be(Guid.Empty);
         }
     }
 }
