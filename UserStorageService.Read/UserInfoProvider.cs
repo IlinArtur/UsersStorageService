@@ -3,6 +3,7 @@ using System.ServiceModel;
 
 namespace UserStorageService.Read
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class UserInfoProvider : IUserInfoProvider
     {
         private IUserInfoDao userInfoDao;
@@ -19,7 +20,7 @@ namespace UserStorageService.Read
 
         private FaultException<UserNotFound> UserNotFound(Guid id)
         {
-            return new FaultException<UserNotFound>(new UserNotFound(id));
+            return new FaultException<UserNotFound>(new UserNotFound { Id = id });
         }
     }
 }

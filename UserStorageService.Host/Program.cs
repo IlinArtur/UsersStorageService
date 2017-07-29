@@ -1,5 +1,7 @@
 ﻿using Microsoft.Owin.Hosting;
 using System;
+using System.ServiceModel;
+using UserStorageService.Read;
 
 namespace UserStorageService.Host
 {
@@ -11,7 +13,12 @@ namespace UserStorageService.Host
 
             using (WebApp.Start<WebConfig>(host))
             {
-                Console.ReadKey();
+                using (var readService = new ServiceHost(new UserInfoProvider(new LiteDbUserInfoDao(@"C:\Profiles.db")), new Uri[0]))
+                {
+                    readService.Open();
+                    Console.ReadKey();
+                    readService.Close();
+                }
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Web.Http;
 using LiteDB;
 using UserStoreageService.Host;
 using UserStorageService.Host.Filters;
+using UserStorageService.Read;
 
 namespace UserStorageService.Host
 {
@@ -13,6 +14,7 @@ namespace UserStorageService.Host
             var mapper = BsonMapper.Global;
 
             mapper.Entity<SyncProfileRequest>().Id(x => x.UserId);
+            mapper.Entity<UserInfo>().Id(x => x.UserId);
 
             var config = new HttpConfiguration();
 

@@ -48,11 +48,13 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\FluentAssertionsExtensions.cs" />
+    <Compile Include="UserStorageServiceReadTests.cs" />
     <Compile Include="UserStorageServiceWriteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,6 +68,10 @@
     <ProjectReference Include="..\UserStorageService.Host\UserStorageService.Host.csproj">
       <Project>{0375a2b2-724f-45c9-909a-485f5d65f062}</Project>
       <Name>UserStorageService.Host</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserStorageService.Read\UserStorageService.Read.csproj">
+      <Project>{59A63419-259F-454D-BFBF-AA91DA12ECE3}</Project>
+      <Name>UserStorageService.Read</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
