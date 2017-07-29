@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 using System;
-using System.Net.Http;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using UserStorageService.Read;
+using static UserStoreageService.Host.IntegrationTests.ServicesSetupFixture;
 
 namespace UserStoreageService.Host.IntegrationTests
 {
@@ -48,18 +48,6 @@ namespace UserStoreageService.Host.IntegrationTests
             var userInfo = GetUserInfo(userId_DeadBeef);
 
             userInfo.Should().NotBeNull();
-        }
-
-        private UserInfo GetUserInfo(Guid id)
-        {
-            return client.GetUserInfo(id);
-        }
-
-        private Task<HttpResponseMessage> SendJson(Guid userId = default(Guid), string countryIsoCode = "ru", string locale = "ru-RU")
-        {
-            var client = new HttpClient();
-            var request = new SyncProfileRequest { UserId = userId, CountryIsoCode = countryIsoCode, Locale = locale };
-            return client.PostAsJsonAsync("http://localhost:51488/import.json", request);
         }
 
         [Test]

@@ -2,9 +2,9 @@
 using NUnit.Framework;
 using System;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using UserStoreageService.Host.IntegrationTests.Helpers;
+using static UserStoreageService.Host.IntegrationTests.ServicesSetupFixture;
 
 namespace UserStoreageService.Host.IntegrationTests
 {
@@ -20,13 +20,6 @@ namespace UserStoreageService.Host.IntegrationTests
             var response = await SendJson(userId_DeadBeef);
 
             response.Should().HaveStatusCode(HttpStatusCode.OK);
-        }
-
-        private Task<HttpResponseMessage> SendJson(Guid userId = default(Guid), string countryIsoCode = "ru", string locale = "ru-RU")
-        {
-            var client = new HttpClient();
-            var request = new SyncProfileRequest { UserId = userId, CountryIsoCode = countryIsoCode, Locale = locale };
-            return client.PostAsJsonAsync("http://localhost:51488/import.json", request);
         }
 
         [Test]
