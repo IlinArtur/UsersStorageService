@@ -5,7 +5,7 @@ using UserStoreageService.Host;
 
 namespace UserStorageService.Host
 {
-    class LiteDbUserInfoDao : IUserInfoDao
+    public class LiteDbUserInfoDao : IUserInfoDao
     {
         private readonly string connectionString;
         private readonly string profilesCollection = "profiles";
@@ -13,6 +13,9 @@ namespace UserStorageService.Host
         public LiteDbUserInfoDao(string connectionString)
         {
             this.connectionString = connectionString;
+            var mapper = BsonMapper.Global;
+            mapper.Entity<SyncProfileRequest>().Id(x => x.UserId);
+            mapper.Entity<UserInfo>().Id(x => x.UserId);
         }
 
         public UserInfo GetUserInfo(Guid id)
@@ -24,12 +27,12 @@ namespace UserStorageService.Host
             }
         }
 
-        private void Save(SyncProfileRequest request)
+        public void Save(SyncProfileRequest profile)
         {
             using (var db = new LiteDatabase(connectionString))
             {
                 var collection = db.GetCollection<SyncProfileRequest>(profilesCollection);
-                collection.Upsert(request);
+                collection.Upsert(profile);
             }
         }
     }

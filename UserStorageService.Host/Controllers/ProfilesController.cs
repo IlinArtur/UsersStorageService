@@ -1,26 +1,23 @@
-﻿using LiteDB;
-using System.Web.Http;
+﻿using System.Web.Http;
+using UserStorageService.Host;
 using UserStoreageService.Host;
 
 namespace WebApiCondoleTest.Controllers
 {
     public class ProfilesController : ApiController
     {
+        private LiteDbUserInfoDao repository;
+
+        public ProfilesController(LiteDbUserInfoDao repository)
+        {
+            this.repository = repository;
+        }
+
         [HttpPost]
         public IHttpActionResult Post(SyncProfileRequest request)
         {
-            Save(request);
+            repository.Save(request);
             return Ok();
-        }
-
-        [NonAction]
-        private static void Save(SyncProfileRequest request)
-        {
-            using (var db = new LiteDatabase(@"C:\Profiles.db"))
-            {
-                var collection = db.GetCollection<SyncProfileRequest>("profiles");
-                collection.Upsert(request);
-            }
         }
     }
 }

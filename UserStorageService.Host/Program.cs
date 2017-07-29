@@ -1,7 +1,14 @@
-﻿using Microsoft.Owin.Hosting;
+﻿using Autofac;
+using Autofac.Integration.Wcf;
+using Autofac.Integration.WebApi;
+using Microsoft.Owin.Hosting;
+using Owin;
 using System;
 using System.ServiceModel;
+using System.Web.Http;
+using UserStorageService.Host.Filters;
 using UserStorageService.Read;
+using WebApiCondoleTest.Controllers;
 
 namespace UserStorageService.Host
 {
@@ -10,11 +17,35 @@ namespace UserStorageService.Host
         static void Main(string[] args)
         {
             var host = "http://localhost:51488";
-
-            using (WebApp.Start<WebConfig>(host))
+            var containerBuilder = new ContainerBuilder();
+            containerBuilder.Register(_ => new LiteDbUserInfoDao(@"C:\Profiles.db")).AsSelf().AsImplementedInterfaces().SingleInstance();
+            containerBuilder.RegisterApiControllers(typeof(ProfilesController).Assembly);
+            containerBuilder.RegisterType<UserInfoProvider>().AsImplementedInterfaces();
+            var container = containerBuilder.Build();
+            var writeHost = WebApp.Start(host, appBuilder => 
             {
-                using (var readService = new ServiceHost(new UserInfoProvider(new LiteDbUserInfoDao(@"C:\Profiles.db")), new Uri[0]))
+                var config = new HttpConfiguration();
+
+                config.MapHttpAttributeRoutes();
+
+                config.Filters.Add(new ValidateModelAttribute());
+                config.Routes.MapHttpRoute(
+                    name: "DefaultApi",
+                    routeTemplate: "import.json",
+                    defaults: new { controller = "profiles" }
+                );
+
+                config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+                appBuilder.UseAutofacMiddleware(container);
+                appBuilder.UseAutofacWebApi(config);
+                appBuilder.UseWebApi(config);
+            });
+
+            using (writeHost)
+            {
+                using (var readService = new ServiceHost(typeof(UserInfoProvider), new Uri[0]))
                 {
+                    readService.AddDependencyInjectionBehavior<IUserInfoProvider>(container);
                     readService.Open();
                     Console.ReadKey();
                     readService.Close();

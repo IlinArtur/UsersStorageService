@@ -3,7 +3,6 @@ using System.ServiceModel;
 
 namespace UserStorageService.Read
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class UserInfoProvider : IUserInfoProvider
     {
         private IUserInfoDao userInfoDao;
