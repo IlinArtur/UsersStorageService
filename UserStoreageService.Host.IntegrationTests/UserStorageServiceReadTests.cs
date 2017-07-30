@@ -12,33 +12,7 @@ namespace UserStoreageService.Host.IntegrationTests
     [Category("Slow")]
     public class UserStorageServiceReadTests
     {
-        private ChannelFactory<IUserInfoProvider> channelFactory;
-        private IUserInfoProvider client;
         private readonly Guid userId_DeadBeef = Guid.Parse("00000000-0000-dead-beef-000000000001");
-
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            channelFactory = new ChannelFactory<IUserInfoProvider>(new BasicHttpBinding(), new EndpointAddress("http://localhost:8081/Service1/"));
-        }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            channelFactory.Close();
-        }
-
-        [SetUp]
-        public void SetUp()
-        {
-            client = channelFactory.CreateChannel();
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            (client as IClientChannel)?.Close();
-        }
 
         [Test]
         public async Task ReadService_ByDefault_ShouldReturnUserInfo()
