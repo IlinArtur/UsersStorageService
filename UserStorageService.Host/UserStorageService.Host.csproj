@@ -65,15 +65,6 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.2.3.0\lib\net45\Serilog.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog.Sinks.File, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.File.3.2.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog.Sinks.RollingFile, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.RollingFile.3.3.0\lib\net45\Serilog.Sinks.RollingFile.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -99,8 +90,6 @@
     <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Filters\LoggingFilterAttribute.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />
-    <Compile Include="Logging\ILogger.cs" />
-    <Compile Include="Logging\Logger.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="LiteDbRepository.cs" />
     <Compile Include="Program.cs" />
@@ -118,6 +107,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UserStorageService.Logging\UserStorageService.Logging.csproj">
+      <Project>{C9F295B1-5A0F-4299-9BF0-E80FE7BC9C76}</Project>
+      <Name>UserStorageService.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UserStorageService.Read\UserStorageService.Read.csproj">
       <Project>{59A63419-259F-454D-BFBF-AA91DA12ECE3}</Project>
       <Name>UserStorageService.Read</Name>

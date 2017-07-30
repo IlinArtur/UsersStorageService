@@ -5,10 +5,10 @@ using UserStorageService.Read;
 using WebApiCondoleTest.Controllers;
 using System;
 using UserStorageService.Host.Services;
-using UserStorageService.Host.Logging;
 using UserStorageService.Host.Filters;
 using System.Web.Http.Filters;
 using System.IO;
+using UserStorageService.Logging;
 
 namespace UserStorageService.Host
 {

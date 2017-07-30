@@ -7,8 +7,8 @@ using System.Net.Http;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using UserStorageService.Host;
-using UserStorageService.Host.Logging;
 using UserStorageService.Host.Services;
+using UserStorageService.Logging;
 using UserStorageService.Read;
 using UserStoreageService.Host.Models;
 

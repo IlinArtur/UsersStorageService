@@ -1,7 +1,7 @@
-﻿using System;
-using Serilog;
+﻿using Serilog;
+using System;
 
-namespace UserStorageService.Host.Logging
+namespace UserStorageService.Logging
 {
     public class Logger : ILogger
     {
@@ -15,12 +15,12 @@ namespace UserStorageService.Host.Logging
 
         public void LogError(Exception exception, object request)
         {
-            logger.Error(exception, "Request filed {@request}", request);
+            logger.Error(exception, "Request failed {@request}", request);
         }
 
         public void LogResponse(object response, object request)
         {
-            logger.Information("Request: {@Request} processed. Response {@response}", request, response);
+            logger.Information("Request: {@request} processed. Response {@response}", request, response);
         }
     }
 }

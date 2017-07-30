@@ -95,6 +95,10 @@
       <Project>{0375a2b2-724f-45c9-909a-485f5d65f062}</Project>
       <Name>UserStorageService.Host</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UserStorageService.Logging\UserStorageService.Logging.csproj">
+      <Project>{C9F295B1-5A0F-4299-9BF0-E80FE7BC9C76}</Project>
+      <Name>UserStorageService.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UserStorageService.Read\UserStorageService.Read.csproj">
       <Project>{59A63419-259F-454D-BFBF-AA91DA12ECE3}</Project>
       <Name>UserStorageService.Read</Name>

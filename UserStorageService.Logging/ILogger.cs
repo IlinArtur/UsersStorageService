@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UserStorageService.Host.Logging
+namespace UserStorageService.Logging
 {
     public interface ILogger
     {

@@ -3,6 +3,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using System;
 using System.ServiceModel;
+using UserStorageService.Logging;
 using UserStorageService.Read;
 
 namespace UserStoreageService.Read.Tests
@@ -28,7 +29,7 @@ namespace UserStoreageService.Read.Tests
 
         private static UserInfoProvider CreateUserInfoProvider(IUserInfoDao fakeUserInfoDao)
         {
-            return new UserInfoProvider(fakeUserInfoDao);
+            return new UserInfoProvider(fakeUserInfoDao, A.Fake<ILogger>());
         }
 
         [Test]
