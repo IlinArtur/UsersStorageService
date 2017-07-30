@@ -1,7 +1,6 @@
 ﻿using LiteDB;
 using System;
 using UserStorageService.Read;
-using UserStoreageService.Host;
 using UserStoreageService.Host.Models;
 
 namespace UserStorageService.Host

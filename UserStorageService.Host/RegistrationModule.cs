@@ -5,6 +5,10 @@ using UserStorageService.Read;
 using WebApiCondoleTest.Controllers;
 using System;
 using UserStorageService.Host.Services;
+using UserStorageService.Host.Logging;
+using UserStorageService.Host.Filters;
+using System.Web.Http.Filters;
+using System.IO;
 
 namespace UserStorageService.Host
 {
@@ -23,8 +27,18 @@ namespace UserStorageService.Host
                 .AsImplementedInterfaces().SingleInstance();
             builder.RegisterApiControllers(typeof(ProfilesController).Assembly);
             builder.RegisterType<UserInfoProvider>().AsImplementedInterfaces();
+            builder.Register(SetupLogger).SingleInstance();
+            builder.RegisterType<ValidateModelAttribute>().As<ActionFilterAttribute>();
+            builder.RegisterType<LoggingFilterAttribute>().As<ActionFilterAttribute>();
             builder.Register(SetupWriteService);
             builder.Register(SetupReadService);
+        }
+
+        private ILogger SetupLogger(IComponentContext arg)
+        {
+            var defaultPath = Path.Combine("logs", "log-{Date}.txt");
+            var logPath = ConfigurationManager.AppSettings["logPath"] ??  defaultPath;
+            return new Logger(Path.GetFullPath(logPath));
         }
 
         private IService SetupReadService(IComponentContext context)

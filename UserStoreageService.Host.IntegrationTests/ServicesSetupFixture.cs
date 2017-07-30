@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using FakeItEasy;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Net.Http;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using UserStorageService.Host;
+using UserStorageService.Host.Logging;
 using UserStorageService.Host.Services;
 using UserStorageService.Read;
 using UserStoreageService.Host.Models;
@@ -38,6 +40,7 @@ namespace UserStoreageService.Host.IntegrationTests
             builder.RegisterInstance(WriteServiceAddress).Named<string>(RegistrationModule.WriteHostAddress);
             builder.RegisterInstance(ReadServiceAddress).Named<string>(RegistrationModule.ReadHostAddress);
             builder.RegisterInstance(LiteDbConnectionstring).Named<string>(RegistrationModule.LiteDbConnectionString);
+            builder.RegisterInstance(A.Fake<ILogger>());
             container = builder.Build();
             services = container.Resolve<IEnumerable<IService>>();
             DoWithServices(x => x.Start());

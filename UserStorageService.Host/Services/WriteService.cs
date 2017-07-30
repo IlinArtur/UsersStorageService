@@ -3,8 +3,9 @@ using Autofac.Integration.WebApi;
 using Microsoft.Owin.Hosting;
 using Owin;
 using System;
+using System.Collections.Generic;
 using System.Web.Http;
-using UserStorageService.Host.Filters;
+using System.Web.Http.Filters;
 
 namespace UserStorageService.Host.Services
 {
@@ -28,7 +29,8 @@ namespace UserStorageService.Host.Services
 
                 config.MapHttpAttributeRoutes();
 
-                config.Filters.Add(new ValidateModelAttribute());
+                var filters = context.Resolve<IEnumerable<ActionFilterAttribute>>();
+                config.Filters.AddRange(filters);
                 config.Routes.MapHttpRoute(
                     name: "DefaultApi",
                     routeTemplate: "import.json",
