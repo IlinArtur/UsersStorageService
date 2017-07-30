@@ -9,7 +9,8 @@ namespace UserStorageService.Host.Filters
 {
     public class LoggingFilterAttribute : ActionFilterAttribute, IExceptionFilter
     {
-        private readonly ILogger logger;
+        private readonly 
+            ILogger logger;
 
         public LoggingFilterAttribute(ILogger logger)
         {
@@ -32,6 +33,11 @@ namespace UserStorageService.Host.Filters
 
         private async Task<object> ParseResponse(HttpResponseMessage response)
         {
+            if (response == null)
+            {
+                return null;
+            }
+
             string content = null;
             var header = response.ToString();
             if (response.Content != null)
