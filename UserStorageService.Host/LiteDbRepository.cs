@@ -7,8 +7,8 @@ namespace UserStorageService.Host
 {
     public class LiteDbRepository : IUserInfoDao
     {
+        private const string profilesCollection = "profiles";
         private readonly string connectionString;
-        private readonly string profilesCollection = "profiles";
 
         public LiteDbRepository(string connectionString)
         {
@@ -22,8 +22,8 @@ namespace UserStorageService.Host
         {
             using (var db = new LiteDatabase(connectionString))
             {
-                var collection = db.GetCollection<UserInfo>(profilesCollection);
-                return collection.FindOne(x => x.UserId == id);
+                var usersInfos = db.GetCollection<UserInfo>(profilesCollection);
+                return usersInfos.FindOne(x => x.UserId == id);
             }
         }
 

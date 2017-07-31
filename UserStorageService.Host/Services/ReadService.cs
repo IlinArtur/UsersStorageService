@@ -20,7 +20,7 @@ namespace UserStorageService.Host.Services
 
         public void Dispose()
         {
-            host?.Close();
+            Stop();
         }
 
         public void Start()

@@ -51,7 +51,7 @@ namespace UserStorageService.Host.Services
 
         public void Dispose()
         {
-            host?.Dispose();
+            Stop();
         }
     }
 }

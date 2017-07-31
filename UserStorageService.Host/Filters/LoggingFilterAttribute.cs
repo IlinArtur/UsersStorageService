@@ -51,7 +51,7 @@ namespace UserStorageService.Host.Filters
         public Task ExecuteExceptionFilterAsync(HttpActionExecutedContext actionExecutedContext, CancellationToken cancellationToken)
         {
             var request = ParseRequest(actionExecutedContext.Request, actionExecutedContext.ActionContext.ActionArguments);
-            logger.LogError(actionExecutedContext.Exception, request: request);
+            logger.LogError(actionExecutedContext.Exception, request);
             return Task.FromResult(0);
         }
     }
